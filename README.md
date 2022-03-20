@@ -4,6 +4,7 @@ This app tracks and monitors expenses that you spend every day. It helps you to 
 Requirements:
 
 Critical requirements:
+
 As a user, I want to be able to register how much money I spent, such that I can keep track of how much money I spend.
 As a user, I want to be able to add a category of my spenditure, such that I can compare spenditure on different categories.
 As a user, I want to be able to register the date of my spenditure, such that I can keep track of my spenditure during different periods.
@@ -12,6 +13,7 @@ As a user, I want to be able to view my spenditure on my preffered periods, such
 As a user, I want to be able to view how much money I spend on different categories, such that I would know on what category I'm spending the most.
 
 High requirements:
+
 As a user, I want to be able to create my own category of spenditurem, such that I could personalize my spenditure in the app.
 As a user, I want to be able to select category from already existing categories, such that I could register my spenditure more quickly.
 As a user, I want to be able to set a spending limit on my preferred category, such that I would know when I cannot spend money on a certain category.
@@ -23,6 +25,7 @@ As a user, I want to be able to view products/services, their prices and their d
 As a user, I want to be able to see where a certain product or service is the cheapest, based on my registered data, such that I could save money.
 
 Low requirements:
+
 As a user, I want money from my budget from preffered period to be deducted when I spend money during that period, I would have a precise view of my budget.
 As a user, I want to be able to see where a certain product or service is the most expensive, based on my registered data, such that I could avoid spending money there.
 As a user, I want to be able to be notified, when I am approaching my spending limit, such that I could lower my spendings.
