@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "820667145724",
+    "firebase_url": "https://finances-a1ad4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "finances-a1ad4",
+    "storage_bucket": "finances-a1ad4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820667145724:android:7db267cb69df1f76002679",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820667145724-0ig0uec3f2pco3q6tj8meio1ovs6098c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB_esaT3xJu7mlSovP4-gQGIz6lccafsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820667145724-0ig0uec3f2pco3q6tj8meio1ovs6098c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
