@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finances.ViewModel.RegisterViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +30,7 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
     private TextView banner, registerUser;
     private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
+    private RegisterViewModel viewModel;
 
     private FirebaseAuth mAuth;
 
@@ -34,6 +38,8 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
+
+        viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -49,6 +55,34 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
         editTextPassword = (EditText) findViewById(R.id.password);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        viewModel.getProgressBar().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean == false)
+                {
+                    int visibility = aBoolean ? View.VISIBLE : View.INVISIBLE;
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        viewModel.getAuthenticationMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(Register_User.this, s, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        viewModel.getCompleted().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean == true)
+                {
+                    startActivity(new Intent(Register_User.this, MainActivity.class));
+                }
+            }
+        });
     }
 
     @Override
@@ -107,37 +141,7 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
             editTextPassword.requestFocus();
             return;
         }
-
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.VISIBLE);
-                if (task.isSuccessful()) {
-                    User user = new User(fullName, age, email);
-
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Register_User.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(Register_User.this, MainActivity.class));
-                                    } else {
-                                        Toast.makeText(Register_User.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
-                } else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(Register_User.this, "Failed to register the user! Try again!", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                }
-            }
-        });
+        viewModel.register(email, password, fullName, age);
     }
 }
