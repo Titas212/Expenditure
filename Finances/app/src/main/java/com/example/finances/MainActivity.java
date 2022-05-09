@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.finances.ViewModel.MainActivityViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,9 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView register, forgotPassword;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
-
-    private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        mAuth = FirebaseAuth.getInstance();
-
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        viewModel.getAuthenticationMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        viewModel.getProgressBar().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                int visibility = aBoolean ? View.VISIBLE : View.INVISIBLE;
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        viewModel.getCompleted().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean == true) {
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                }
+            }
+        });
     }
 
     @Override
@@ -96,32 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-    progressBar.setVisibility(View.VISIBLE);
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if(user.isEmailVerified())
-                    {
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                        progressBar.setVisibility(View.GONE);
-                    }
-                    else
-                    {
-                        user.sendEmailVerification();
-                        Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
-                    }
-
-                }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "Failed to login! Please check your credentials!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        progressBar.setVisibility(View.VISIBLE);
+        viewModel.login(email, password);
     }
 }

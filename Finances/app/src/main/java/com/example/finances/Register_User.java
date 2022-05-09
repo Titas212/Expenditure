@@ -32,16 +32,12 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
     private ProgressBar progressBar;
     private RegisterViewModel viewModel;
 
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
-
-        mAuth = FirebaseAuth.getInstance();
 
         banner = (TextView) findViewById(R.id.banner);
         banner.setOnClickListener(this);

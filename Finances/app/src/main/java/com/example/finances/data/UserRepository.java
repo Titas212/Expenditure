@@ -35,4 +35,29 @@ public class UserRepository {
     public MutableLiveData<Boolean> getCompleted() {
         return userDAO.getCompleted();
     }
+
+    public MutableLiveData<String> getEmail() {return userDAO.getEmail();}
+
+    public void resetPassword(String email)
+    {
+        userDAO.resetPassword(email);
+    }
+
+    public MutableLiveData<String> getAge() {
+        return userDAO.getAge();
+    }
+
+    public MutableLiveData<String> getFullName() {
+        return userDAO.getFullName();
+    }
+
+    public void getProfile()
+    {
+        userDAO.getProfile();
+    }
+
+    public void login(String email, String password)
+    {
+        userDAO.login(email, password);
+    }
 }

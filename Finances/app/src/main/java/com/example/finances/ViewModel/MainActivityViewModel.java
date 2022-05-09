@@ -5,25 +5,16 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.finances.ForgotPassword;
 import com.example.finances.data.UserRepository;
 
-public class ForgotPasswordViewModel extends AndroidViewModel
+public class MainActivityViewModel extends AndroidViewModel
 {
     private UserRepository userRepository;
 
-    public ForgotPasswordViewModel(@NonNull Application application) {
+    public MainActivityViewModel(@NonNull Application application) {
         super(application);
         userRepository = UserRepository.getInstance();
-    }
-
-    public MutableLiveData<String> getEmail() {return userRepository.getEmail();}
-
-    public void resetPassword(String email)
-    {
-        userRepository.resetPassword(email);
     }
 
     public MutableLiveData<String> getAuthenticationMessage() {
@@ -36,5 +27,10 @@ public class ForgotPasswordViewModel extends AndroidViewModel
 
     public MutableLiveData<Boolean> getCompleted() {
         return userRepository.getCompleted();
+    }
+
+    public void login(String email, String password)
+    {
+        userRepository.login(email, password);
     }
 }
