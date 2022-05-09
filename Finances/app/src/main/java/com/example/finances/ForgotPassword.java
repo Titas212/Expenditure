@@ -1,11 +1,8 @@
 package com.example.finances;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.finances.ViewModel.ForgotPasswordViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassword extends AppCompatActivity {
 
@@ -50,7 +44,7 @@ public class ForgotPassword extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean == true)
                 {
-                    startActivity(new Intent(ForgotPassword.this, MainActivity.class));
+                    startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
                 }
             }
         });

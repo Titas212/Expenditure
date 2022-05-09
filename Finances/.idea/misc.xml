@@ -10,11 +10,25 @@
         <entry key="..\:/Users/titas/AndroidStudioProjects/Finances/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/titas/AndroidStudioProjects/Finances/app/src/main/res/layout/activity_profile.xml" value="0.22" />
         <entry key="..\:/Users/titas/AndroidStudioProjects/Finances/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3545" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_forgot_password.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_login.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_main.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_main2.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_profile.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_register_user.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_add_expenditure.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_dashboard.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_expenses.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_home.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_notifications.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/home_fragment_layout.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/menu/bottom_menu.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16" />
       </map>
     </option>
   </component>

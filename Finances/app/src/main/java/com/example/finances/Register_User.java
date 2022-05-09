@@ -1,15 +1,11 @@
 package com.example.finances;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.finances.ViewModel.RegisterViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class Register_User extends AppCompatActivity implements View.OnClickListener{
 
@@ -75,7 +66,7 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean == true)
                 {
-                    startActivity(new Intent(Register_User.this, MainActivity.class));
+                    startActivity(new Intent(Register_User.this, LoginActivity.class));
                 }
             }
         });
@@ -86,7 +77,7 @@ public class Register_User extends AppCompatActivity implements View.OnClickList
         switch (view.getId())
         {
             case R.id.banner:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.register:
                 registerUser();

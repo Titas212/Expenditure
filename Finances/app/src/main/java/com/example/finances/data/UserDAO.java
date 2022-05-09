@@ -2,18 +2,11 @@ package com.example.finances.data;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.finances.ForgotPassword;
-import com.example.finances.MainActivity;
-import com.example.finances.ProfileActivity;
-import com.example.finances.Register_User;
 import com.example.finances.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
