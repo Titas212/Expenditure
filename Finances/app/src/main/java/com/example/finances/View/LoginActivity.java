@@ -1,4 +1,4 @@
-package com.example.finances;
+package com.example.finances.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.finances.R;
 import com.example.finances.ViewModel.MainActivityViewModel;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

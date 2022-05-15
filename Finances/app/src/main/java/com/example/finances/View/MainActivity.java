@@ -1,18 +1,18 @@
-package com.example.finances;
+package com.example.finances.View;
 
 import android.os.Bundle;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.example.finances.Fragments.AddFragment;
+import com.example.finances.Fragments.ExpensesFragment;
+import com.example.finances.Fragments.HomeFragment;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
+import com.example.finances.R;
 import com.example.finances.databinding.ActivityMainBinding;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

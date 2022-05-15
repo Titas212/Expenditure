@@ -7,7 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.finances.User;
+import com.example.finances.Model.Expense;
+import com.example.finances.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,6 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserDAO
 {
@@ -32,10 +36,14 @@ public class UserDAO
     private String userId;
     private DatabaseReference reference;
     private FirebaseUser user;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     public UserDAO()
     {
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
     }
 
     public static UserDAO getInstance() {
@@ -177,5 +185,26 @@ public class UserDAO
                 }
             }
         });
+    }
+
+    public void addExpense(Expense expense)
+    {
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expense").push().setValue(expense).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    progressBar.setValue(false);
+                    authenticationMessage.setValue("Your expense has been registered!");
+                    completed.setValue(true);
+                }
+                else
+                {
+                    progressBar.setValue(false);
+                    authenticationMessage.setValue("Something went wrong!");
+                }
+            }
+        });
+
     }
 }

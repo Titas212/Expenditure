@@ -8,20 +8,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Finances">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".View.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".View.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Register_User"
+            android:name=".View.Register_User"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".View.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

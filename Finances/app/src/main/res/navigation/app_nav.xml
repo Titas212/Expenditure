@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.finances.HomeFragment"
+        android:name="com.example.finances.Fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addExpenditure"
-        android:name="com.example.finances.AddFragment"
+        android:name="com.example.finances.Fragments.AddFragment"
         android:label="fragment_add_expenditure"
         tools:layout="@layout/fragment_add_expenditure" />
     <fragment
         android:id="@+id/expensesFragment"
-        android:name="com.example.finances.ExpensesFragment"
+        android:name="com.example.finances.Fragments.ExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_expenses" />
 </navigation>

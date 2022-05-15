@@ -1,9 +1,10 @@
-package com.example.finances;
+package com.example.finances.Model;
+
+import java.util.ArrayList;
 
 public class User
 {
     public String fullName, age, email;
-
     public User()
     {
 
@@ -14,7 +15,6 @@ public class User
         this.fullName = fullName;
         this.age = age;
         this.email = email;
-        return;
     }
 
     public String getAge() {
@@ -29,6 +29,7 @@ public class User
         return fullName;
     }
 
+
     public void setAge(String age) {
         this.age = age;
     }
@@ -40,4 +41,5 @@ public class User
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
 }

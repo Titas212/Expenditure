@@ -2,6 +2,8 @@ package com.example.finances.data;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finances.Model.Expense;
+
 public class UserRepository {
     private static UserRepository instance;
     private UserDAO userDAO;
@@ -59,5 +61,10 @@ public class UserRepository {
     public void login(String email, String password)
     {
         userDAO.login(email, password);
+    }
+
+    public void addExpense(Expense expense)
+    {
+        userDAO.addExpense(expense);
     }
 }

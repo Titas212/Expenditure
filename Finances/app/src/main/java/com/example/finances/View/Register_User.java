@@ -1,4 +1,4 @@
-package com.example.finances;
+package com.example.finances.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finances.R;
 import com.example.finances.ViewModel.RegisterViewModel;
 
 public class Register_User extends AppCompatActivity implements View.OnClickListener{

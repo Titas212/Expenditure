@@ -6,22 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finances.Model.Expense;
 import com.example.finances.data.UserRepository;
 
-public class ForgotPasswordViewModel extends AndroidViewModel
+public class AddFragmentViewModel extends AndroidViewModel
 {
     private UserRepository userRepository;
-
-    public ForgotPasswordViewModel(@NonNull Application application) {
+    public AddFragmentViewModel(@NonNull Application application)
+    {
         super(application);
         userRepository = UserRepository.getInstance();
     }
 
-    public MutableLiveData<String> getEmail() {return userRepository.getEmail();}
-
-    public void resetPassword(String email)
+    public void addExpense(Expense expense)
     {
-        userRepository.resetPassword(email);
+        userRepository.addExpense(expense);
     }
 
     public MutableLiveData<String> getAuthenticationMessage() {
