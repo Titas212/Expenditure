@@ -4,16 +4,18 @@ public class Expense
 {
     private double spent;
     private String category;
+    private Date date;
 
     public Expense()
     {
         
     }
 
-    public Expense(double spent, String category)
+    public Expense(double spent, String category, Date date)
     {
         this.spent = spent;
         this.category = category;
+        this.date = date;
     }
 
     public String getCategory() {
@@ -23,5 +25,9 @@ public class Expense
     public double getSpent()
     {
         return spent;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

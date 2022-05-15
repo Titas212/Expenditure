@@ -19,8 +19,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
 import com.example.finances.R;
 import com.example.finances.ViewModel.AddFragmentViewModel;
@@ -42,7 +44,13 @@ public class AddFragment extends Fragment implements View.OnClickListener {
     private String category;
 
     private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private TextView tvSelectDate;
+    private TextView selectDate;
+
+    private int year;
+    private int month;
+    private int day;
+    private Date date;
 
     private Application app;
 
@@ -58,10 +66,29 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         app = (Application) getActivity().getApplication();
         viewModel = new ViewModelProvider(this).get(AddFragmentViewModel.class);
         View view = inflater.inflate(R.layout.fragment_add_expenditure, container, false);
-        dateButton =(Button) view.findViewById(R.id.buttonDate);
-        dateButton.setOnClickListener(this);
-        dateButton.setText(getTodaysDate());
-        initDatepicker();
+
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        tvSelectDate = view.findViewById(R.id.textViewDate);
+        selectDate = view.findViewById(R.id.textDate);
+        selectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog dialog = new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        date = new Date(year, month, day);
+                        month = month+1;
+                        String date = getMonthFormat(month)+" "+day+" "+year;
+                        selectDate.setText(date);
+                    }
+                }, year, month, day);
+                dialog.show();
+            }
+        });
+
         editTextAmount = (EditText) view.findViewById(R.id.amountSpentText);
         addExpenseButton = (Button) view.findViewById(R.id.addExpenseButton);
         addExpenseButton.setOnClickListener(this);
@@ -107,16 +134,6 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private String getTodaysDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month +1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId())
@@ -124,45 +141,18 @@ public class AddFragment extends Fragment implements View.OnClickListener {
             case R.id.addExpenseButton:
                 addExpenditure();
                 break;
-            case R.id.buttonDate:
-                datePickerDialog.show();
-                break;
         }
     }
 
     public void addExpenditure()
     {
         double expenseTemp = Double.parseDouble(editTextAmount.getText().toString().trim());
-        Expense expense = new Expense(expenseTemp, category);
+        Expense expense = new Expense(expenseTemp, category, date);
         viewModel.addExpense(expense);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void initDatepicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month = month+1;
-                String date = makeDateString(day, month, year);
-                dateButton.setText(date);
-            }
-        };
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
-        datePickerDialog = new DatePickerDialog(app.getApplicationContext(), style, dateSetListener, year, month, day);
-    }
-
-    private String makeDateString(int day, int month, int year)
-    {
-        return getMonthFormat(month) + " " + day + " " + year;
-    }
 
     private String getMonthFormat(int month)
     {
