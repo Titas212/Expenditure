@@ -1,8 +1,14 @@
 package com.example.finances.data;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -74,9 +80,24 @@ public class UserRepository {
     {
         userDAO.getExpenses();
     }
+
     public MutableLiveData<ArrayList<Expense>> getExpenseList()
     {
         return userDAO.getExpenseList();
+    }
+
+    public MutableLiveData<Double> getSumDate(){return userDAO.getSumDate();}
+
+    public void getExpensesPeriod(Date start, Date end){userDAO.getExpensesPeriod(start, end);}
+
+    public void getExpensesCategory(String category)
+    {
+        userDAO.getExpensesCategory(category);
+    }
+
+    public void getExpensesCategoryDate(String category, Date start, Date end)
+    {
+        userDAO.getExpensesCategoryDate(category, start, end);
     }
 
 }

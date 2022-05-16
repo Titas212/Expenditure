@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
 import com.example.finances.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +33,9 @@ public class UserDAO
     private MutableLiveData<String> email = new MutableLiveData<>();
     private MutableLiveData<String> fullName = new MutableLiveData<>();
     private MutableLiveData<String> age = new MutableLiveData<>();
+    private MutableLiveData<Double> sumDate = new MutableLiveData<>();
     private MutableLiveData<ArrayList<Expense>> expenses = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Expense>> dateExpenses = new MutableLiveData<>();
     private FirebaseAuth mAuth;
     private String userId;
     private DatabaseReference reference;
@@ -53,6 +56,11 @@ public class UserDAO
             instance = new UserDAO();
         }
         return instance;
+    }
+
+    public MutableLiveData<Double>getSumDate()
+    {
+        return sumDate;
     }
 
     public MutableLiveData<String> getAuthenticationMessage() {
@@ -233,5 +241,140 @@ public class UserDAO
 
             }
         });
+    }
+
+    public void getExpensesPeriod(Date start, Date end)
+    {
+        ArrayList<Expense> tempExpense = new ArrayList<>();
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expense").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    Expense expense =dataSnapshot.getValue(Expense.class);
+                    tempExpense.add(expense);
+                }
+                sumDate.setValue(expensesSumBetween(tempExpense, start, end));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void getExpensesCategory(String category)
+    {
+        ArrayList<Expense> tempExpense = new ArrayList<>();
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expense").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    Expense expense =dataSnapshot.getValue(Expense.class);
+                    tempExpense.add(expense);
+                }
+                sumDate.setValue(categoryExpenses(tempExpense, category));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void getExpensesCategoryDate(String category, Date start, Date end)
+    {
+        ArrayList<Expense> tempExpense = new ArrayList<>();
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expense").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    Expense expense =dataSnapshot.getValue(Expense.class);
+                    tempExpense.add(expense);
+                }
+                sumDate.setValue(categoryAndDateExpenses(tempExpense, category, start, end));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public double expensesSum(ArrayList<Expense> expenses)
+    {
+        double sum = 0;
+
+        for(Expense expense: expenses)
+        {
+            sum+= expense.getSpent();
+        }
+        return sum;
+    }
+
+    public double expensesSumBetween(ArrayList<Expense> expenses, Date start, Date end)
+    {
+        double sum = 0;
+
+        for(Expense expense: expenses)
+        {
+            if(dateBetween(expense.getDate(),start, end))
+            {
+                sum += expense.getSpent();
+            }
+        }
+        return sum;
+    }
+
+    public boolean dateBetween(Date date,Date start, Date end)
+    {
+        if(date.getYear()>start.getYear() && date.getYear() < end.getYear())
+        {
+            return true;
+        }
+        if((date.getYear()==start.getYear() && date.getYear()== end.getYear())&& (date.getMonth()> start.getMonth() && date.getMonth()< end.getMonth()))
+        {
+            return true;
+        }
+        if((date.getYear()==start.getYear() && date.getYear()== end.getYear())&& (date.getMonth()== start.getMonth() && date.getMonth()== end.getMonth()) && (date.getDay()>= start.getDay() && date.getDay()<=end.getDay()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public double categoryExpenses(ArrayList<Expense> expenses, String category)
+    {
+        double sum = 0;
+
+        for(Expense expense: expenses)
+        {
+            if(expense.getCategory().equals(category))
+            {
+                sum += expense.getSpent();
+            }
+        }
+        return sum;
+    }
+    public double categoryAndDateExpenses(ArrayList<Expense> expenses, String category, Date start, Date end)
+    {
+        double sum = 0;
+
+        for(Expense expense: expenses)
+        {
+            if(expense.getCategory().equals(category) && dateBetween(expense.getDate(),start, end))
+            {
+                sum += expense.getSpent();
+            }
+        }
+        return sum;
     }
 }

@@ -1,5 +1,9 @@
 package com.example.finances.Model;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
+
+import java.util.Comparator;
+
 public class Expense
 {
     private double spent;
@@ -36,4 +40,17 @@ public class Expense
     public String getName() {
         return name;
     }
+
+    public static Comparator<Expense> newToOld= new Comparator<Expense>() {
+        @Override
+        public int compare(Expense expense, Expense t1) {
+            return new CompareToBuilder().append(expense.getDate().getYear(), t1.getDate().getYear()).append(expense.getDate().getMonth(), t1.getDate().getMonth()).append(expense.getDate().getDay(), t1.getDate().getDay()).toComparison();
+        }
+    };
+    public static Comparator<Expense> oldToNew= new Comparator<Expense>() {
+        @Override
+        public int compare(Expense expense, Expense t1) {
+            return new CompareToBuilder().append(t1.getDate().getYear(), expense.getDate().getYear()).append(t1.getDate().getMonth(), expense.getDate().getMonth()).append(t1.getDate().getDay(), expense.getDate().getDay()).toComparison();
+        }
+    };
 }

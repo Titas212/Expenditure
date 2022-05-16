@@ -16,13 +16,18 @@ import com.example.finances.Model.Expense;
 import com.example.finances.R;
 import com.example.finances.ViewModel.MainActivityViewModel;
 import com.example.finances.ViewModel.MyAdapterViewModel;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
 {
     Context context;
-    ArrayList<Expense> list;
+    List<Expense> list;
 
     public MyAdapter(Context context, ArrayList<Expense> list) {
         this.context = context;
@@ -42,7 +47,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
         holder.name.setText(expense.getName());
         holder.category.setText(expense.getCategory());
         holder.amount.setText(Double.toString(expense.getSpent()));
-        holder.date.setText(expense.toString());
+        if(expense.getDate()!=null) {
+            holder.date.setText(expense.getDate().toString());
+        }
     }
 
     @Override

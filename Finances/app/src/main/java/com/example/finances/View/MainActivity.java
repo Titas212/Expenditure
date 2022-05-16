@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.finances.Fragments.StatisticsFragment;
 import com.example.finances.R;
 import com.example.finances.databinding.ActivityMainBinding;
 
@@ -38,6 +39,9 @@ private ActivityMainBinding binding;
                  break;
              case R.id.expensesFragment:
                  replaceFragment(new ExpensesFragment());
+                 break;
+             case R.id.statisticsFragment:
+                 replaceFragment(new StatisticsFragment());
                  break;
          }
          return true;

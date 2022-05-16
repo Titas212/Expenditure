@@ -22,7 +22,11 @@
         <item>Utilities</item>
         <item>Rent</item>
         <item>Leisure</item>
-        <item>Add</item>
+        <item>No category</item>
+    </string-array>
+    <string-array name="sort">
+        <item>Newest</item>
+        <item>Oldest</item>
     </string-array>
 
 </resources>

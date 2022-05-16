@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: Update blank fragment layout -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textViewStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick start date"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick end date"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStartDate" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Select Category"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEndDate" />
+
+    <TextView
+        android:id="@+id/textDateStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="JAN 01 3000"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginLeft="20dp"
+
+        app:layout_constraintStart_toEndOf="@+id/textViewStartDate"
+        app:layout_constraintTop_toTopOf="@+id/textViewStartDate" />
+
+    <TextView
+        android:id="@+id/textDateEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="JAN 02 3000"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/textDateStart"
+        app:layout_constraintTop_toBottomOf="@+id/textDateStart" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="@+id/textDateEnd"
+        app:layout_constraintTop_toBottomOf="@+id/textDateEnd">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="Choose category" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/seeExpensesButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="CALCULATE"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSpent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginBottom="40dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/seeExpensesButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Include date"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

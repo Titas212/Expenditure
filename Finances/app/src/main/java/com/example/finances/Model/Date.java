@@ -14,7 +14,7 @@ public class Date
     public Date(int year, int month, int day)
     {
         this.year = year;
-        this.month = month;
+        this.month = month + 1;
         this.day = day;
     }
 
@@ -29,6 +29,7 @@ public class Date
     public int getYear() {
         return year;
     }
+
 
     private String getMonthFormat(int month)
     {
@@ -64,7 +65,6 @@ public class Date
 
     @Override
     public String toString() {
-        month = month+1;
         String date = getMonthFormat(month)+" "+day+" "+year;
         return date;
     }

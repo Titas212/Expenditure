@@ -14,7 +14,9 @@
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3545" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3545" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_list.xml" value="0.253" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3545" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/drawable/ic_statistics.xml" value="0.253" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_forgot_password.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_login.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_main.xml" value="0.2975630611372381" />
@@ -23,14 +25,18 @@
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/activity_register_user.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/dropdown_item.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/expense_item.xml" value="0.2975630611372381" />
-        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_add_expenditure.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_add_expenditure.xml" value="0.1" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_dashboard.xml" value="0.2975630611372381" />
-        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_expenses.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_expenses.xml" value="0.18" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_home.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_notifications.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/fragment_statistics.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/home_fragment_layout.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/spinner_inner_text.xml" value="0.15220179563916203" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/layout/spinner_text.xml" value="0.15220179563916203" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/menu/bottom_menu.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16" />
+        <entry key="..\:/Users/titas/Desktop/Expenditure/Finances/app/src/main/res/menu/sort_menu.xml" value="0.2975630611372381" />
       </map>
     </option>
   </component>
