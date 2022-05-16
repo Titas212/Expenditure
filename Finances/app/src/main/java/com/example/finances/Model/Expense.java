@@ -5,17 +5,19 @@ public class Expense
     private double spent;
     private String category;
     private Date date;
+    private String name;
 
     public Expense()
     {
         
     }
 
-    public Expense(double spent, String category, Date date)
+    public Expense(double spent, String category, Date date, String name)
     {
         this.spent = spent;
         this.category = category;
         this.date = date;
+        this.name = name;
     }
 
     public String getCategory() {
@@ -29,5 +31,9 @@ public class Expense
 
     public Date getDate() {
         return date;
+    }
+
+    public String getName() {
+        return name;
     }
 }

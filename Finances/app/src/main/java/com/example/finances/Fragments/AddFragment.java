@@ -34,6 +34,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
 
     private EditText editTextAmount;
     private Button addExpenseButton;
+    private EditText editTextExpense;
 
     private AddFragmentViewModel viewModel;
     private ProgressBar progressBar;
@@ -42,6 +43,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
     private AutoCompleteTextView autoCompleteTextView;
     private ArrayAdapter<String> adapterItems;
     private String category;
+    private String name;
 
     private DatePickerDialog datePickerDialog;
     private TextView tvSelectDate;
@@ -90,6 +92,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         });
 
         editTextAmount = (EditText) view.findViewById(R.id.amountSpentText);
+        editTextExpense = (EditText) view.findViewById(R.id.expenditure);
         addExpenseButton = (Button) view.findViewById(R.id.addExpenseButton);
         addExpenseButton.setOnClickListener(this);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -128,6 +131,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
                 if(aBoolean==true)
                 {
                     editTextAmount.setText("");
+                    editTextExpense.setText("");
                 }
             }
         });
@@ -146,8 +150,9 @@ public class AddFragment extends Fragment implements View.OnClickListener {
 
     public void addExpenditure()
     {
+        name = editTextExpense.getText().toString().trim();
         double expenseTemp = Double.parseDouble(editTextAmount.getText().toString().trim());
-        Expense expense = new Expense(expenseTemp, category, date);
+        Expense expense = new Expense(expenseTemp, category, date, name);
         viewModel.addExpense(expense);
         progressBar.setVisibility(View.VISIBLE);
     }

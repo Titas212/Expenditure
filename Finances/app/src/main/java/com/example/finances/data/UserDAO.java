@@ -32,6 +32,7 @@ public class UserDAO
     private MutableLiveData<String> email = new MutableLiveData<>();
     private MutableLiveData<String> fullName = new MutableLiveData<>();
     private MutableLiveData<String> age = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Expense>> expenses = new MutableLiveData<>();
     private FirebaseAuth mAuth;
     private String userId;
     private DatabaseReference reference;
@@ -74,6 +75,11 @@ public class UserDAO
 
     public MutableLiveData<String> getFullName() {
         return fullName;
+    }
+
+    public MutableLiveData<ArrayList<Expense>> getExpenseList()
+    {
+        return expenses;
     }
 
     public void register(String email, String password, String fullName, String age)
@@ -206,5 +212,26 @@ public class UserDAO
             }
         });
 
+    }
+
+    public void getExpenses()
+    {
+        ArrayList<Expense> tempExpense = new ArrayList<>();
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Expense").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    Expense expense =dataSnapshot.getValue(Expense.class);
+                    tempExpense.add(expense);
+                }
+                expenses.setValue(tempExpense);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finances.Model.Expense;
 
+import java.util.ArrayList;
+
 public class UserRepository {
     private static UserRepository instance;
     private UserDAO userDAO;
@@ -67,4 +69,14 @@ public class UserRepository {
     {
         userDAO.addExpense(expense);
     }
+
+    public void getExpenses()
+    {
+        userDAO.getExpenses();
+    }
+    public MutableLiveData<ArrayList<Expense>> getExpenseList()
+    {
+        return userDAO.getExpenseList();
+    }
+
 }
