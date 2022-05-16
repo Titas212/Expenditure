@@ -7,8 +7,8 @@ This app tracks and monitors expenses that you spend every day. It helps you to 
 
 - [x] As a user, I want to be able to register how much money I spent, such that I could keep track of how much money I spend.
 - [x] As a user, I want to be able to add a category of my spenditure, such that I could compare spenditure on different categories.
-- [ ] As a user, I want to be able to register the date of my spenditure, such that I could keep track of my spenditure during different periods.
-- [ ] As a user, I want to be able to register on what I spend my money, such that later I could see on what things or services I spent my money.
+- [x] As a user, I want to be able to register the date of my spenditure, such that I could keep track of my spenditure during different periods.
+- [x] As a user, I want to be able to register on what I spend my money, such that later I could see on what things or services I spent my money.
 - [ ] As a user, I want to be able to view my spenditure on my preffered periods, such that I would know when I'm spending most money.
 - [ ] As a user, I want to be able to view how much money I spend on different categories, such that I would know on what category I'm spending the most.
 
