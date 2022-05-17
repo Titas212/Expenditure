@@ -14,22 +14,16 @@ This app tracks and monitors expenses that you spend every day. It helps you to 
 
 ## High requirements:
 
-- [ ] As a user, I want to be able to create my own category of spenditurem, such that I could personalize my spenditure in the app.
-- [ ] As a user, I want to be able to select category from already existing categories, such that I could register my spenditure more quickly.
-- [ ] As a user, I want to be able to set a spending limit on my preferred category, such that I would know when I cannot spend money on a certain category.
-- [ ] As a user, I want to be able to add a place with my spenditure, such that I could compare my spendings on different places.
-- [ ] As a user, I want to be able to set a budget for my preferred period, such that I could see how money I can spend.
-- [ ] As a user, I want to be able to add a product or a service and its cost, such that I could compare different prices on different products or services.
-- [ ] As a user, I want to be able to add a place with a product or service, such that I could compare prices in different places.
-- [ ] As a user, I want to be able to view products/services, their prices and their distributers, such that I could see where products or services are cheaper.
-- [ ] As a user, I want to be able to see where a certain product or service is the cheapest, based on my registered data, such that I could save money.
+- [x] As a user, I want to be able to select category from already existing categories, such that I could register my spenditure more quickly.
+- [x] As a user, I want to be able to increase my budget, such that I could be more flexible.
+- [x] As a user, I want to be able to set new limit, such that if my circumstances change, I want to have a bigger or smaller limit.
+- [x] As a user, I want to be able to see how much money I have in my budget, such that I would know how much money I can spend. 
+- [x] As a user, I want to be able to see all my spenditures, such that I would be able to track on what I spend my money.
 
 ## Low requirements:
 
-- [ ] As a user, I want money from my budget from preffered period to be deducted when I spend money during that period, I would have a precise view of my budget.
-- [ ] As a user, I want to be able to see where a certain product or service is the most expensive, based on my registered data, such that I could avoid spending money there.
+- [x] As a user, I want money from my budget from preffered period to be deducted when I spend money during that period, I would have a precise view of my budget.
 - [ ] As a user, I want to be able to be notified, when I am approaching my spending limit, such that I could lower my spendings.
-- [ ] As a user, I want to be able to set my spending limit on my preferred period, such that I would know when I can't spend money anymore.
+- [x] As a user, I want to be able to set my spending limit on my preferred period, such that I would know when I can't spend money anymore.
 - [ ] As a user, I want to be able to add my created category to categories list, such that later I could select it.
 - [ ] As a user, I want to be able to view my spenditure of preferred periods in diagrams, such that I could compare my spenditure on different periods more easily.
-- [ ] As a user, I want to be able to select my preffered currency, I would have a better understanding of my spendings.
