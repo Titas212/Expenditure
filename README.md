@@ -14,6 +14,7 @@ This app tracks and monitors expenses that you spend every day. It helps you to 
 
 ## High requirements:
 
+- [x] As a user, I want to be to register and login, such that my data would be saved.
 - [x] As a user, I want to be able to select category from already existing categories, such that I could register my spenditure more quickly.
 - [x] As a user, I want to be able to increase my budget, such that I could be more flexible.
 - [x] As a user, I want to be able to set new limit, such that if my circumstances change, I want to have a bigger or smaller limit.
