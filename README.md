@@ -1,6 +1,8 @@
 # Expenditure
 This app tracks and monitors expenses that you spend every day. It helps you to see where you spend most of your money, how much money you spend on certain periods and different categories, therefore you can keep track of your expenses more easily and even save up some budget.
 
+App video: https://youtu.be/VDtSUqfOdXI
+
 # Requirements:
 
 ## Critical requirements:
