@@ -5,12 +5,17 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
+import com.example.finances.Model.Limit;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserRepository {
     private static UserRepository instance;
@@ -98,6 +103,54 @@ public class UserRepository {
     public void getExpensesCategoryDate(String category, Date start, Date end)
     {
         userDAO.getExpensesCategoryDate(category, start, end);
+    }
+
+    public void addExpensesLimit(double limit, Date start, Date end)
+    {
+        userDAO.addExpensesLimit(limit, start, end);
+    }
+
+    public void increaseLimit(double increase, Limit limit)
+    {
+        userDAO.increaseLimit(increase, limit);
+    }
+
+    public MutableLiveData<Limit> getLimit()
+    {
+        return userDAO.getLimit();
+    }
+
+    public void getLimitFromDb()
+    {
+        userDAO.getLimitFromDb();
+    }
+
+    public void decreaseBudget(double decrease, Limit limitToDecrease, Date date, double currentMoney)
+    {
+        userDAO.decreaseBudget(decrease, limitToDecrease, date, currentMoney);
+    }
+
+    public MutableLiveData<Double> getCurrentBudget() {
+        return userDAO.getCurrentBudget();
+    }
+
+    public void addCurrentMoney(double money)
+    {
+        userDAO.addCurrentMoney(money);
+    }
+
+    public void increaseBudget(double increase,double currentMoney)
+    {
+        userDAO.increaseBudget(increase, currentMoney);
+    }
+
+    public void getBudgetFromDb()
+    {
+        userDAO.getBudgetFromDb();
+    }
+
+    public void signOut() {
+        userDAO.signOut();
     }
 
 }

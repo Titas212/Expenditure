@@ -29,4 +29,8 @@ public class Limit
     public double getSpendingLimit() {
         return spendingLimit;
     }
+
+    public void setSpendingLimit(double spendingLimit) {
+        this.spendingLimit = spendingLimit;
+    }
 }

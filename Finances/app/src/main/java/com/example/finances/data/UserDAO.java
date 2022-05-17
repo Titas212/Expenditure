@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
+import com.example.finances.Model.Limit;
 import com.example.finances.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,6 +35,8 @@ public class UserDAO
     private MutableLiveData<String> fullName = new MutableLiveData<>();
     private MutableLiveData<String> age = new MutableLiveData<>();
     private MutableLiveData<Double> sumDate = new MutableLiveData<>();
+    private MutableLiveData<Double> currentBudget = new MutableLiveData<>();
+    private MutableLiveData<Limit> limit = new MutableLiveData<>();
     private MutableLiveData<ArrayList<Expense>> expenses = new MutableLiveData<>();
     private MutableLiveData<ArrayList<Expense>> dateExpenses = new MutableLiveData<>();
     private FirebaseAuth mAuth;
@@ -97,7 +100,10 @@ public class UserDAO
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    User user = new User(fullName, age, email);
+                    Date fakeStart = new Date(0,0,0);
+                    Date fakeEnd = new Date(0,0,0);
+                    Limit fakeLimit = new Limit(0, fakeStart, fakeEnd);
+                    User user = new User(fullName, age, email, fakeLimit, 0);
 
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user)
@@ -125,6 +131,12 @@ public class UserDAO
         });
 
     }
+
+    public void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        completed.setValue(false);
+    }
+
 
     public void resetPassword(String email)
     {
@@ -209,17 +221,14 @@ public class UserDAO
                 if(task.isSuccessful())
                 {
                     progressBar.setValue(false);
-                    authenticationMessage.setValue("Your expense has been registered!");
                     completed.setValue(true);
                 }
                 else
                 {
                     progressBar.setValue(false);
-                    authenticationMessage.setValue("Something went wrong!");
                 }
             }
         });
-
     }
 
     public void getExpenses()
@@ -306,7 +315,6 @@ public class UserDAO
 
             }
         });
-
     }
 
     public double expensesSum(ArrayList<Expense> expenses)
@@ -376,5 +384,113 @@ public class UserDAO
             }
         }
         return sum;
+    }
+
+    public void addExpensesLimit(double limitSet, Date start, Date end)
+    {
+        HashMap limitMap = new HashMap();
+        limitMap.put("spendingLimit", limitSet);
+        limitMap.put("startDate", start);
+        limitMap.put("endDate", end);
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("spendingLimit").updateChildren(limitMap).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if(task.isSuccessful())
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+        });
+        addCurrentMoney(limitSet);
+    }
+
+    public void addCurrentMoney(double money)
+    {
+        HashMap limitMap = new HashMap();
+        limitMap.put("currentMoney", money);
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(limitMap).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if(task.isSuccessful())
+                {
+                    currentBudget.setValue(money);
+                }
+                else
+                {
+
+                }
+            }
+        });
+    }
+
+    public void getLimitFromDb()
+    {
+        myRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("spendingLimit").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Limit limitToUpdate = snapshot.getValue(Limit.class);
+                limit.postValue(limitToUpdate);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void getBudgetFromDb()
+    {
+        user = mAuth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userId = user.getUid();
+
+        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+
+                if(user !=null)
+                {
+                    currentBudget.postValue(user.getCurrentMoney());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                authenticationMessage.postValue("Something went wrong!");
+            }
+        });
+    }
+
+    public void increaseLimit(double increase, Limit limitToIncrease)
+    {
+        addExpensesLimit((limitToIncrease.getSpendingLimit()+increase), limitToIncrease.getStartDate(), limitToIncrease.getEndDate());
+    }
+
+    public void decreaseBudget(double decrease, Limit limitToDecrease, Date date, double currentMoney)
+    {
+        if(dateBetween(date, limitToDecrease.getStartDate(), limitToDecrease.getEndDate()))
+        {
+            addCurrentMoney(currentMoney-decrease);
+        }
+    }
+
+    public void increaseBudget(double increase,double currentMoney)
+    {
+            addCurrentMoney(currentMoney+increase);
+    }
+
+    public MutableLiveData<Limit> getLimit()
+    {
+        return limit;
+    }
+
+    public MutableLiveData<Double> getCurrentBudget() {
+        return currentBudget;
     }
 }

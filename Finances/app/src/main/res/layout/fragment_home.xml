@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragments.HomeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/setLimitButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="SET LIMIT"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="LOGOUT"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/increaseBudget"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="INCREASE BUDGET"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="30dp"
+        android:hint="Limit"
+        app:layout_constraintBottom_toTopOf="@+id/setLimitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home" />
+        android:id="@+id/textViewStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick start date"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textDateStartLimit"
+        app:layout_constraintEnd_toEndOf="@+id/textDateStartLimit"
+        app:layout_constraintStart_toStartOf="@+id/textDateStartLimit" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick end date"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textDateEndLimit"
+        app:layout_constraintEnd_toEndOf="@+id/textDateEndLimit"
+        app:layout_constraintStart_toStartOf="@+id/textDateEndLimit" />
+
+    <TextView
+        android:id="@+id/textDateStartLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="20dp"
+        android:hint="JAN 01 3000"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextLimit"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textDateEndLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="JAN 02 3000"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextLimit"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/limitProgressBar"
+        app:layout_constraintEnd_toEndOf="@+id/limitProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/limitProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/limitProgressBar" />
+
+    <ProgressBar
+        android:id="@+id/limitProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="400dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle"
+        android:progress="60"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

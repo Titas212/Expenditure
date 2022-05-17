@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.finances.Model.Date;
 import com.example.finances.Model.Expense;
+import com.example.finances.Model.Limit;
 import com.example.finances.R;
 import com.example.finances.ViewModel.AddFragmentViewModel;
 
@@ -55,6 +56,8 @@ public class AddFragment extends Fragment implements View.OnClickListener {
     private Date date;
 
     private Application app;
+    private double currentMoney;
+    private Limit limitForAdd;
 
     public AddFragment()
     {
@@ -105,14 +108,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
                 category = item;
-                Toast.makeText(app.getApplicationContext(),"Categorie: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        viewModel.getAuthenticationMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Toast.makeText(app.getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(app.getApplicationContext(),"Category: " + item, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,6 +131,21 @@ public class AddFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+
+        viewModel.getLimit().observe(getViewLifecycleOwner(), new Observer<Limit>() {
+            @Override
+            public void onChanged(Limit limit) {
+                limitForAdd = limit;
+            }
+        });
+
+        viewModel.getCurrentBudget().observe(getViewLifecycleOwner(), new Observer<Double>() {
+            @Override
+            public void onChanged(Double aDouble) {
+                currentMoney = aDouble;
+            }
+        });
+        viewModel.getCurrentBudget();
         return view;
     }
 
@@ -154,6 +165,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         double expenseTemp = Double.parseDouble(editTextAmount.getText().toString().trim());
         Expense expense = new Expense(expenseTemp, category, date, name);
         viewModel.addExpense(expense);
+        viewModel.decreaseBudget(expense.getSpent(), limitForAdd, date, currentMoney);
         progressBar.setVisibility(View.VISIBLE);
     }
 

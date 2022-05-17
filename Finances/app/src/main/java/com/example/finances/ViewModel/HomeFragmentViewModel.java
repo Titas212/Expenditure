@@ -7,34 +7,26 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.finances.Model.Date;
-import com.example.finances.Model.Expense;
 import com.example.finances.Model.Limit;
 import com.example.finances.data.UserRepository;
 
-public class AddFragmentViewModel extends AndroidViewModel
+public class HomeFragmentViewModel extends AndroidViewModel
 {
     private UserRepository userRepository;
-    public AddFragmentViewModel(@NonNull Application application)
-    {
+
+    public HomeFragmentViewModel(@NonNull Application application) {
         super(application);
         userRepository = UserRepository.getInstance();
     }
 
-    public void addExpense(Expense expense)
+    public void addExpensesLimit(double limit, Date start, Date end)
     {
-        userRepository.addExpense(expense);
+        userRepository.addExpensesLimit(limit, start, end);
     }
 
-    public MutableLiveData<String> getAuthenticationMessage() {
-        return userRepository.getAuthenticationMessage();
-    }
-
-    public MutableLiveData<Boolean> getProgressBar() {
-        return userRepository.getProgressBar();
-    }
-
-    public MutableLiveData<Boolean> getCompleted() {
-        return userRepository.getCompleted();
+    public void increaseLimit(double increase, Limit limit)
+    {
+        userRepository.increaseLimit(increase, limit);
     }
 
     public MutableLiveData<Limit> getLimit()
@@ -51,8 +43,22 @@ public class AddFragmentViewModel extends AndroidViewModel
         return userRepository.getCurrentBudget();
     }
 
-    public void decreaseBudget(double decrease, Limit limitToDecrease, Date date, double currentMoney)
+    public void addCurrentMoney(double money)
     {
-        userRepository.decreaseBudget(decrease, limitToDecrease, date, currentMoney);
+        userRepository.addCurrentMoney(money);
+    }
+
+    public void increaseBudget(double increase,double currentMoney)
+    {
+        userRepository.increaseBudget(increase, currentMoney);
+    }
+
+    public void getBudgetFromDb()
+    {
+        userRepository.getBudgetFromDb();
+    }
+
+    public void signOut() {
+        userRepository.signOut();
     }
 }
